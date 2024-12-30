@@ -1,0 +1,56 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Or8Way.hdl
+/**
+ * 8-way Or gate: 
+ * out = in[0] Or in[1] Or ... Or in[7]
+ */
+CHIP Or8Way {
+    IN in[8];
+    OUT out;
+
+     PARTS:
+    // Inversões (NOT) das entradas (usando portas NAND)
+    Nand(a=in[0], b=in[0], out=a);
+    Nand(a=in[1], b=in[1], out=b);
+    Nand(a=a, b=b, out=c);
+    Nand(a=c, b=c, out=d);
+    Nand(a=d, b=d, out=e);
+
+    Nand(a=in[2], b=in[2], out=n);
+    Nand(a=in[3], b=in[3], out=g);
+    Nand(a=n , b=g , out=p );
+    Nand(a=p , b=p , out=q );
+    Nand(a=q , b=q , out=r );
+    
+    Nand(a=in[4] , b=in[4] , out=t );
+    Nand(a=in[5] , b=in[5] , out=o );
+    Nand(a=t , b=o , out=v );
+    Nand(a=v , b=v , out=x );
+    Nand(a=x , b=x , out=z );
+
+    Nand(a=in[6] , b=in[6] , out=ff );
+    Nand(a=in[7] , b=in[7] , out=ll );
+    Nand(a=ff , b=ll , out=gg );
+    Nand(a=gg , b=gg , out=hh );
+    Nand(a=hh , b=hh , out=ii );
+
+    Nand(a=e , b=e , out=f );
+    Nand(a=r , b=r , out=s );
+    Nand(a=f , b=s , out=aaa );
+    Nand(a=aaa , b=aaa , out=h );
+    Nand(a=h , b=h , out=i );
+
+    Nand(a=z , b=z , out=aa );
+    Nand(a=ii , b=ii , out=jj );
+    Nand(a=aa , b=jj , out=bb );
+    Nand(a=bb , b=bb , out=cc );
+    Nand(a=cc , b=cc , out=dd );
+
+    Nand(a=i , b=i , out=j );
+    Nand(a=dd , b=dd , out=ee );
+    Nand(a=j , b=ee , out=l );
+    Nand(a=l , b=l , out=m );
+    Nand(a=m , b=m , out=out );
+}
