@@ -70,6 +70,11 @@ CHIP ALU {
 
 
 
+//x/y → modificações (zero/negate) → xa / yb
+      //→ AND e ADD → escolhe com f → o
+         // → nega com no → out
+             // → detecta zero → zr
+             // → detecta negativo → ng
 
 
 
