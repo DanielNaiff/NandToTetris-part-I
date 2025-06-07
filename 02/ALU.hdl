@@ -41,20 +41,26 @@ CHIP ALU {
         ng;      // if (out < 0)  equals 1, else 0
 
     PARTS:
+//1.Pré-processamento de x e y
     Not16(in=x , out=notx );
     Mux4Way16(a=x , b=notx , c[0..15] = false , d[0..15] = true , sel[1]=zx , sel[0]=nx, out = xa );
+
 
     Not16(in=y , out=noty );
     Mux4Way16(a=y , b=noty , c[0..15] = false , d[0..15] = true , sel[1]=zy , sel[0]=ny, out = yb );
 
+//2. Realiza operação AND ou ADD entre xa e yb
     And16(a=xa , b=yb , out=aANDb );
     Add16(a =xa , b =yb , out =aADDb );
 
+//3. Seleciona a operação final: AND ou ADD
     Mux16(a=aANDb , b=aADDb  , sel=f , out=o );
 
+//4. Negar o resultado se necessário (no)
     Not16(in=o , out=noto );
     Mux16(a=o , b=noto , sel=no ,out=out, out[15]=ng, out[0..7] = out8LSB, out[8..15] = out8MSB );
 
+// 5. Verifica se out == 0 (calcula zr)
     Or8Way(in=out8LSB , out=or8LSB );
     Or8Way(in=out8MSB , out=or8MSB );
 
