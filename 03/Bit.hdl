@@ -3,6 +3,10 @@ CHIP Bit {
     OUT out;
 
     PARTS:
-    Mux(a=c , b=in , sel=load , out=muxout );
-    DFF(in=muxout , out=out , out=c);
+    // wire interno chamado state
+    Mux(a=state, b=in, sel=load, out=next);
+    DFF(in=next, out=state);
+    // conecta state à saída externa do chip
+    // (out pode receber valores de wires internos)
+    Or(a=state, b=false, out=out);
 }

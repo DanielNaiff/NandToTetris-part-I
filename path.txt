@@ -1,0 +1,19 @@
+🧭 Caminho sugerido
+Aqui vai um caminho de aprendizado possível:
+
+✔️ Nível 1 – Emular o Hack (do curso):
+Você já conhece todas as instruções e a arquitetura
+
+Pode usar isso como laboratório pessoal
+
+Implementa CPU + RAM + ROM + tela + teclado
+
+✔️ Nível 2 – Emular Chip-8:
+Super simples: 35 instruções, 4K de memória
+
+Ótimo para aprender entrada/saída, display, timers
+
+✔️ Nível 3 – Game Boy ou NES:
+Mais desafiador, mas muito gratificante
+
+Vai envolver aprendizado de mapeamento de memória, som, gráficos, interrupções, etc.
